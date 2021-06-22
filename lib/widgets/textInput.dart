@@ -31,9 +31,9 @@ class TextInput extends StatelessWidget {
               hintText: hint,
               prefixIcon: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Icon(icon, color: Colors.white, size: 30),
+                child: Icon(icon, color: Colors.white, size: 24),
               ),
-              hintStyle: kBodyText),
+              hintStyle: kHintText),
           style: kBodyText,
           keyboardType: inputType,
           textInputAction: inputAction,
