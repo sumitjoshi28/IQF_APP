@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../palatte.dart';
+import '../helper/palatte.dart';
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({

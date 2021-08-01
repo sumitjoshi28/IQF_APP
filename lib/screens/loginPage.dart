@@ -1,10 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:iqf_app/palatte.dart';
+import 'package:iqf_app/helper/fbAuth.dart';
+import 'package:iqf_app/helper/palatte.dart';
+import 'package:iqf_app/screens/onBoardingPage.dart';
 import 'package:iqf_app/widgets/widgets.dart';
-import 'package:http/http.dart' as http;
+
+FbAuth fbAuth = new FbAuth();
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,7 +12,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  static final FacebookLogin facebookSignIn = new FacebookLogin();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -81,45 +80,13 @@ class _LoginPageState extends State<LoginPage> {
                                 Container(
                                     child: ElevatedButton(
                                         onPressed: () async {
-                                          final FacebookLoginResult result =
-                                              await facebookSignIn
-                                                  .logIn(['email']);
-
-                                          switch (result.status) {
-                                            case FacebookLoginStatus.loggedIn:
-                                              final FacebookAccessToken
-                                                  accessToken =
-                                                  result.accessToken;
-                                              final graphResponse =
-                                                  await http.get(Uri.parse(
-                                                      'https://graph.facebook.com/v2.12/me?fields=first_name,last_name,picture,email&access_token=${accessToken.token}'));
-                                              final profile = jsonDecode(
-                                                  graphResponse.body);
-                                              print(profile);
-                                              setState(() {
-                                                String name =
-                                                    profile["first_name"];
-                                              });
-                                              print('''
-         Logged in!
-         
-         Token: ${accessToken.token}
-         User id: ${accessToken.userId}
-         Expires: ${accessToken.expires}
-         Permissions: ${accessToken.permissions}
-         Declined permissions: ${accessToken.declinedPermissions}
-         ''');
-                                              break;
-                                            case FacebookLoginStatus
-                                                .cancelledByUser:
-                                              print(
-                                                  'Login cancelled by the user.');
-                                              break;
-                                            case FacebookLoginStatus.error:
-                                              print(
-                                                  'Something went wrong with the login process.\n'
-                                                  'Here\'s the error Facebook gave us: ${result.errorMessage}');
-                                              break;
+                                          String name = await fbAuth.login();
+                                          if (name != "") {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        OnBoardingPage(
+                                                            name: name)));
                                           }
                                         },
                                         child: Text("Login with Facebook"))),

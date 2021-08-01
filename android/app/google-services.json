@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "697052302916",
+    "project_id": "iqf-app",
+    "storage_bucket": "iqf-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697052302916:android:4d00d2f1a36d1049dd3611",
+        "android_client_info": {
+          "package_name": "com.example.iqf_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "697052302916-c3mnmmrcpp139ou2gd3d5pd0rtb7qsq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASKSdZBYDQ983SVZDaO1WOdC3A55DgIZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "697052302916-c3mnmmrcpp139ou2gd3d5pd0rtb7qsq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
